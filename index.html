@@ -3,22 +3,58 @@
   <head>
     <script src="jquery.js"></script>
     <script src="data_generator.js"></script>
+    <link href="style.css" rel="stylesheet">
   </head>
+  
   <body>
     <script>
 
       $(document).ready(function(){
+
+
+        
         var $body = $('body');
         $body.html('');
+        var $head = $('<h1>TWITTLER</h1>');
+        $body.before($head);
+        var $button = $('<button>Fetch</button>');
+        $head.after($button);
+        
 
-        var index = streams.home.length - 1;
-        while(index >= 0){
-          var tweet = streams.home[index];
-          var $tweet = $('<div></div>');
-          $tweet.text('@' + tweet.user + ': ' + tweet.message);
-          $tweet.appendTo($body);
-          index -= 1;
-        }
+        $button.on('click', function(){
+          //fetch new tweets  
+          $body.html('');
+          var index = streams.home.length - 1;
+          while(index >= 0){
+            var tweet = streams.home[index];
+            //modified for timestamps
+            var $tweet = $('<div><h3></h3><p></p><p></p></div>');
+            //adds timestamp to 1st p
+            $tweet.children('p').first().text(tweet.created_at);
+            //original tweet text in 2nd p
+            $tweet.children('p').last().text(tweet.message);
+            $tweet.children('h3').text('@' + tweet.user);
+            $tweet.children('h3').on('click', function(){
+              $body.html('');
+                var username = ($(this).closest('h3').text()).slice(1);
+                var timelineArray = streams.users[username];
+                var $timeline = $("<div><h2></h2></div>");
+                $timeline.children('h2').text('@' + username);
+                for(var i=0; i<timelineArray.length; i++){
+                  var $twit = $('<div><p></p><p></p></div>');
+                  $twit.children('p').first().text(timelineArray[i].created_at);
+                  $twit.children('p').last().text(timelineArray[i].message); 
+                  $twit.appendTo($timeline);
+                }
+                $timeline.appendTo($body);
+            });
+            $tweet.appendTo($body);
+            index -= 1;
+          }
+
+          
+        
+        });
 
       });
 
