@@ -1,0 +1,43 @@
+H1 { 
+	color: darkblue;
+	text-align: center;
+	font-family: Courier;
+	text-shadow: 5px 5px silver;
+	font-size: 36pt;
+}
+
+BUTTON {
+	margin-left: 5em;
+	color: silver;
+	background-color: darkblue;
+	font-family: Courier;
+
+
+}
+
+BODY {
+	margin-left: 5em;
+	font-family: Courier;
+	background-color: skyblue;
+}
+
+H2 {
+	color: darkblue;
+	text: 3px 3px silver;
+}
+
+H3 {
+	color: darkblue;
+	text-shadow: 3px 3px silver;
+}
+
+DIV {
+	background-color: white, silver;
+	padding: 1em;
+}
+
+.lightenUp {
+	color: gray;
+}
+
+

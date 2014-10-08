@@ -28,7 +28,7 @@
           while(index >= 0){
             var tweet = streams.home[index];
             //modified for timestamps
-            var $tweet = $('<div><h3></h3><p></p><p></p></div>');
+            var $tweet = $('<div><p></p><h3></h3><p></p></div>');
             //adds timestamp to 1st p
             $tweet.children('p').first().text(tweet.created_at);
             //original tweet text in 2nd p
@@ -43,6 +43,7 @@
                 for(var i=0; i<timelineArray.length; i++){
                   var $twit = $('<div><p></p><p></p></div>');
                   $twit.children('p').first().text(timelineArray[i].created_at);
+                  $twit.children('p').first().addClass('lightenUp')
                   $twit.children('p').last().text(timelineArray[i].message); 
                   $twit.appendTo($timeline);
                 }
@@ -50,6 +51,7 @@
             });
             $tweet.appendTo($body);
             index -= 1;
+            $('p:even').addClass('lightenUp');
           }
 
           
